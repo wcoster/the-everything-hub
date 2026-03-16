@@ -13,4 +13,5 @@ export default defineConfig({
       },
     },
   },
+  base: '/the-everything-hub/'
 });
