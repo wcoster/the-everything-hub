@@ -3,18 +3,22 @@ export interface Module {
   icon:     string;
   titleKey: string;
   descKey:  string;
-  path:     string;
+  /** i18n key that resolves to the URL slug for the current language */
+  pathKey:  string;
+  /** All language variants — used to register every route in the router */
+  paths:    string[];
   accent:   string;
   tagKeys:  string[];
 }
 
 export const MODULES: Module[] = [
   {
-    id:       'vermogenplanner',
+    id:       'wealthplanner',
     icon:     '🏑',
     titleKey: 'wealthPlanner.title',
     descKey:  'wealthPlanner.cardDesc',
-    path:     '/vermogenplanner',
+    pathKey:  'routes.wealthPlanner',
+    paths:    ['/wealthplanner', '/vermogenplanner'],
     accent:   '#4ade80',
     tagKeys:  ['common.tags.finance', 'common.tags.planning'],
   },

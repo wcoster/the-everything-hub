@@ -5,8 +5,17 @@ import { useTheme } from './hooks/useTheme';
 import Home              from './pages/Home/Home';
 import LangThemeToggle   from './components/LangThemeToggle/LangThemeToggle';
 import DynamicBackground from './components/DynamicBackground/DynamicBackground';
+import { MODULES }       from './modules';
 
 const WealthPlanner = lazy(() => import('./pages/WealthPlanner/WealthPlanner'));
+
+// Map module id → lazy component
+const MODULE_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.ReactElement>> = {
+  wealthplanner: WealthPlanner,
+};
+
+// Strip trailing slash so React Router basename works correctly
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 /** Inner shell — can safely call useTheme() because ThemeProvider is above it. */
 function AppInner() {
@@ -18,8 +27,13 @@ function AppInner() {
       <LangThemeToggle />
       <Suspense>
         <Routes>
-          <Route path="/"                element={<Home />} />
-          <Route path="/vermogenplanner" element={<WealthPlanner />} />
+          <Route path="/" element={<Home />} />
+          {MODULES.flatMap(mod =>
+            mod.paths.map(p => {
+              const Component = MODULE_COMPONENTS[mod.id];
+              return <Route key={p} path={p} element={<Component />} />;
+            })
+          )}
         </Routes>
       </Suspense>
     </>
@@ -28,7 +42,7 @@ function AppInner() {
 
 export default function App() {
   return (
-    <BrowserRouter future={{ v7_startTransition: true }}>
+    <BrowserRouter basename={basename} future={{ v7_startTransition: true }}>
       <ThemeProvider>
         <AppInner />
       </ThemeProvider>

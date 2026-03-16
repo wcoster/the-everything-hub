@@ -12,6 +12,9 @@ const en = {
     sectionModules: 'Modules',
     comingSoon: 'More modules coming soon',
   },
+  routes: {
+    wealthPlanner: 'wealthplanner',
+  },
   wealthPlanner: {
     title: 'Wealth Planner',
     cardDesc: 'Pay off debt & build wealth',

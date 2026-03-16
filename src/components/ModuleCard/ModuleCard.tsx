@@ -15,7 +15,7 @@ export default function ModuleCard({ module }: Props) {
     <button
       className={styles.card}
       style={{ '--accent': module.accent } as React.CSSProperties}
-      onClick={() => navigate(module.path)}
+      onClick={() => navigate('/' + t(module.pathKey))}
       aria-label={`Open ${t(module.titleKey)}`}
     >
       <div className={styles.accentBar} />

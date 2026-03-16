@@ -4,8 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="The Everything Hub — personal tools &amp; planners for wealth building, debt payoff, and financial planning." />
+    <script>
+      // Restore path encoded by 404.html (GitHub Pages SPA redirect)
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var path   = params.get('p');
+        if (path) {
+          var q    = params.get('q');
+          var hash = window.location.hash;
+          window.history.replaceState(
+            null, null,
+            window.location.pathname + path +
+            (q ? '?' + q.replace(/~and~/g, '&') : '') +
+            hash
+          );
+        }
+      })();
+    </script>
     <link rel="preload" href="/fonts/outfit-variable.woff2"  as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="/the-everything-hub/favicon.svg" />
     <title>The Everything Hub</title>
   </head>
   <body>

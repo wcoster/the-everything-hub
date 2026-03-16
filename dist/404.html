@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Everything Hub</title>
+  <script>
+    // GitHub Pages SPA redirect
+    // Encodes the path after the base as a query param so index.html can restore it.
+    (function () {
+      var base  = '/the-everything-hub/';
+      var path  = window.location.pathname.slice(base.length);
+      var query = window.location.search.slice(1).replace(/&/g, '~and~');
+      var hash  = window.location.hash;
+      window.location.replace(
+        window.location.origin + base +
+        '?p=' + encodeURIComponent(path) +
+        (query ? '&q=' + query : '') +
+        hash
+      );
+    })();
+  </script>
+</head>
+<body></body>
+</html>

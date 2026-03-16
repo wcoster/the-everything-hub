@@ -12,6 +12,9 @@ const nl = {
     sectionModules: 'Modules',
     comingSoon: 'Meer modules komen binnenkort',
   },
+  routes: {
+    wealthPlanner: 'vermogenplanner',
+  },
   wealthPlanner: {
     title: 'Vermogenplanner',
     cardDesc: 'Schuld afbetalen & vermogen opbouwen',

@@ -4,10 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="The Everything Hub — personal tools &amp; planners for wealth building, debt payoff, and financial planning." />
+    <script>
+      // Restore path encoded by 404.html (GitHub Pages SPA redirect)
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var path   = params.get('p');
+        if (path) {
+          var q    = params.get('q');
+          var hash = window.location.hash;
+          window.history.replaceState(
+            null, null,
+            window.location.pathname + path +
+            (q ? '?' + q.replace(/~and~/g, '&') : '') +
+            hash
+          );
+        }
+      })();
+    </script>
     <link rel="preload" href="/the-everything-hub/fonts/outfit-variable.woff2"  as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/the-everything-hub/fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="/the-everything-hub/favicon.svg" />
     <title>The Everything Hub</title>
-    <script type="module" crossorigin src="/the-everything-hub/assets/index-CXZRqHrI.js"></script>
+    <script type="module" crossorigin src="/the-everything-hub/assets/index-DaM-H4Kv.js"></script>
     <link rel="modulepreload" crossorigin href="/the-everything-hub/assets/vendor-i18n-DRHOCgN0.js">
     <link rel="modulepreload" crossorigin href="/the-everything-hub/assets/vendor-react-CpovehJb.js">
     <link rel="stylesheet" crossorigin href="/the-everything-hub/assets/index-CD_n-qJ8.css">
