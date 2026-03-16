@@ -8,21 +8,23 @@ interface Props {
   revMo:      number;
   extMo:      number;
   debtMo:     number;
+  stockMo:    number;
 }
 
 interface LegendItem { label: string; value: number; color: string; }
 
-export default function AllocationSection({ freeIncome, revMo, extMo, debtMo }: Props) {
+export default function AllocationSection({ freeIncome, revMo, extMo, debtMo, stockMo }: Props) {
   const { t } = useTranslation();
 
-  const allocated = revMo + extMo + debtMo;
+  const allocated = revMo + extMo + debtMo + stockMo;
   const remaining = freeIncome - allocated;
   const total     = freeIncome > 0 ? freeIncome : allocated;
 
   const items: LegendItem[] = [
-    { label: t('wealthPlanner.allocation.bank'),    value: revMo,  color: 'rgba(96,165,250,0.8)' },
-    { label: t('wealthPlanner.allocation.deposit'), value: extMo,  color: 'rgba(74,222,128,0.8)' },
-    { label: t('wealthPlanner.allocation.duo'),     value: debtMo, color: 'rgba(248,113,113,0.8)' },
+    { label: t('wealthPlanner.allocation.bank'),    value: revMo,   color: 'rgba(96,165,250,0.8)' },
+    { label: t('wealthPlanner.allocation.deposit'), value: extMo,   color: 'rgba(74,222,128,0.8)' },
+    { label: t('wealthPlanner.allocation.stocks'),  value: stockMo, color: 'rgba(167,139,250,0.8)' },
+    { label: t('wealthPlanner.allocation.duo'),     value: debtMo,  color: 'rgba(248,113,113,0.8)' },
   ];
   if (remaining > 0) items.push({ label: t('wealthPlanner.allocation.unallocated'), value: remaining, color: 'rgba(251,191,36,0.5)' });
 

@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.container}>
+      <main className={styles.container}>
         <header className={styles.hero}>
           <div className={styles.heroIcon}>🏠</div>
           <div>
@@ -29,7 +29,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 }

@@ -22,6 +22,7 @@ export default function InputGrid({ inputs, onChange }: Props) {
           <InputGroup label={t('wealthPlanner.sections.threshold')}              value={inputs.revTier}  step={100} onChange={v => onChange('revTier',  v)} />
         </div>
         <InputGroup label={t('wealthPlanner.sections.interestAboveThreshold')} value={inputs.revRate2} step={0.1} onChange={v => onChange('revRate2', v)} />
+        <InputGroup label={t('wealthPlanner.sections.buffer')} value={inputs.bufferAmount} step={100} onChange={v => onChange('bufferAmount', v)} />
       </div>
 
       <div className={styles.section}>
@@ -29,6 +30,14 @@ export default function InputGrid({ inputs, onChange }: Props) {
         <InputGroup label={t('wealthPlanner.sections.startAmount')}    value={inputs.extInit} onChange={v => onChange('extInit', v)} />
         <InputGroup label={t('wealthPlanner.sections.monthlyDeposit')} value={inputs.extMo}   onChange={v => onChange('extMo',   v)} />
         <InputGroup label={t('wealthPlanner.sections.annualInterest')} value={inputs.extRate} step={0.1} onChange={v => onChange('extRate', v)} />
+      </div>
+
+      <div className={styles.section + ' ' + styles.stocks}>
+        <h3>{t('wealthPlanner.sections.stocks')}</h3>
+        <InputGroup label={t('wealthPlanner.sections.startAmount')}      value={inputs.stockInit} onChange={v => onChange('stockInit', v)} />
+        <InputGroup label={t('wealthPlanner.sections.monthlyDeposit')}   value={inputs.stockMo}   onChange={v => onChange('stockMo',   v)} />
+        <InputGroup label={t('wealthPlanner.sections.expectedReturn')}   value={inputs.stockRate} step={0.5} onChange={v => onChange('stockRate', v)} />
+        <p className={styles.note}>{t('wealthPlanner.sections.stocksNote')}</p>
       </div>
 
       <div className={`${styles.section} ${styles.debt}`}>

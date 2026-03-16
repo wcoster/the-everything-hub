@@ -7,17 +7,18 @@ interface Props {
   revMo:      number;
   extMo:      number;
   debtMo:     number;
+  stockMo:    number;
   onFreeIncomeChange: (v: number) => void;
   onRaiseRateChange:  (v: number) => void;
 }
 
 export default function IncomeBar({
-  freeIncome, raiseRate, revMo, extMo, debtMo,
+  freeIncome, raiseRate, revMo, extMo, debtMo, stockMo,
   onFreeIncomeChange, onRaiseRateChange,
 }: Props) {
   const { t } = useTranslation();
 
-  const allocated = revMo + extMo + debtMo;
+  const allocated = revMo + extMo + debtMo + stockMo;
   const remaining = freeIncome - allocated;
 
   const remClass = remaining > 0 ? styles.positive : remaining < 0 ? styles.negative : styles.zero;

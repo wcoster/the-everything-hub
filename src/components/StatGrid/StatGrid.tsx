@@ -5,11 +5,12 @@ interface Props {
   wealth:       number;
   debtFreeText: string;
   assets:       number;
+  stocks:       number;
   endIncome:    number;
   years:        number;
 }
 
-export default function StatGrid({ wealth, debtFreeText, assets, endIncome, years }: Props) {
+export default function StatGrid({ wealth, debtFreeText, assets, stocks, endIncome, years }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -28,6 +29,12 @@ export default function StatGrid({ wealth, debtFreeText, assets, endIncome, year
         <span className={styles.label}>{t('wealthPlanner.stats.savings')}</span>
         <span className={`${styles.num} ${styles.blue}`}>
           €{assets.toLocaleString()}
+        </span>
+      </div>
+      <div className={`${styles.box} ${styles.secondary}`}>
+        <span className={styles.label}>{t('wealthPlanner.stats.stocks')}</span>
+        <span className={`${styles.num} ${styles.purple}`}>
+          €{stocks.toLocaleString()}
         </span>
       </div>
       <div className={`${styles.box} ${styles.secondary}`}>

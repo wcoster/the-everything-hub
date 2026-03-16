@@ -1,0 +1,218 @@
+.wrap {
+  margin-bottom: var(--space-7);
+  background: var(--surface-card);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: border-color var(--transition-slow);
+}
+.wrap:has(.form) {
+  border-color: var(--border-strong);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+.title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.addBtn {
+  padding: 7px 16px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--radius-md);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+.addBtn:hover {
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.form {
+  background: var(--surface-hover);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+.formLabel {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.formSelect,
+.formInput {
+  background: var(--surface-input);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  padding: 7px 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color var(--transition-base);
+}
+.formSelect:focus,
+.formInput:focus {
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.inputWrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.inputWrap .formInput { flex: 1; }
+.euro, .unit {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.cancelBtn {
+  padding: 7px 16px;
+  background: transparent;
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+.cancelBtn:hover { color: var(--text-primary); border-color: var(--border-strong); }
+
+.saveBtn {
+  padding: 7px 18px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition-base);
+}
+.saveBtn:hover { opacity: 0.85; }
+
+.empty {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.eventRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px 14px;
+  background: var(--surface-hover);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-base);
+}
+.eventRow:hover { border-color: var(--border-strong); }
+
+.yearBadge {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 36px;
+  text-align: center;
+}
+
+.typeBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.tagDeposito   { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+.tagStock      { background: rgba(167,139,250,0.15); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); }
+.tagRepayment  { background: rgba(248,113,113,0.15); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+
+.eventDetails {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.amount {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.detail {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--surface-input);
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+.eventLabel {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.editBtn, .deleteBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.78rem;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base);
+  color: var(--text-muted);
+}
+.editBtn:hover   { background: var(--surface-card); color: var(--text-primary); }
+.deleteBtn:hover { background: rgba(248,113,113,0.15); color: #f87171; }
+
+@media (max-width: 600px) {
+  .formRow { grid-template-columns: 1fr; gap: var(--space-2); }
+  .eventRow { flex-wrap: wrap; gap: var(--space-2); }
+}

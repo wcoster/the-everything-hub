@@ -12,7 +12,7 @@ export default function ModuleLayout({ children }: Props) {
 
   return (
     <>
-      <div className={styles.container}>
+      <main className={styles.container}>
         <div className={`glass ${styles.card}`}>
           <button
             className={styles.backBtn}
@@ -25,7 +25,7 @@ export default function ModuleLayout({ children }: Props) {
 
           {children}
         </div>
-      </div>
+      </main>
     </>
   );
 }

@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { useTheme } from './hooks/useTheme';
 import Home              from './pages/Home/Home';
-import WealthPlanner     from './pages/WealthPlanner/WealthPlanner';
 import LangThemeToggle   from './components/LangThemeToggle/LangThemeToggle';
 import DynamicBackground from './components/DynamicBackground/DynamicBackground';
+
+const WealthPlanner = lazy(() => import('./pages/WealthPlanner/WealthPlanner'));
 
 /** Inner shell — can safely call useTheme() because ThemeProvider is above it. */
 function AppInner() {
@@ -14,10 +16,12 @@ function AppInner() {
     <>
       <DynamicBackground theme={theme} />
       <LangThemeToggle />
-      <Routes>
-        <Route path="/"                element={<Home />} />
-        <Route path="/vermogenplanner" element={<WealthPlanner />} />
-      </Routes>
+      <Suspense>
+        <Routes>
+          <Route path="/"                element={<Home />} />
+          <Route path="/vermogenplanner" element={<WealthPlanner />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }

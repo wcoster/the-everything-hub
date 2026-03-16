@@ -297,8 +297,12 @@ export default function DynamicBackground({ theme }: Props) {
       raf = requestAnimationFrame(frame);
     }
 
-    raf = requestAnimationFrame(frame);
+    // Defer first paint until after the browser is idle so the canvas loop
+    // doesn't compete with the LCP element's first paint.
+    const idle = (window.requestIdleCallback ?? setTimeout) as typeof requestIdleCallback;
+    const idleHandle = idle(() => { raf = requestAnimationFrame(frame); });
     return () => {
+      (window.cancelIdleCallback ?? clearTimeout)(idleHandle as number);
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
     };

@@ -4,36 +4,38 @@ import type { OptimizePayload, OptimizeResult } from '../types';
 
 self.onmessage = (e: MessageEvent<OptimizePayload>) => {
   const {
-    revStart, extStart, debtStart,
-    rR1, rR2, revTier, eR, dR,
+    revStart, extStart, debtStart, stockStart,
+    rR1, rR2, revTier, eR, dR, sR,
     totalBudget, simMonths, raiseRate,
-    curRevMo, curExtMo, curDebtMo,
+    curRevMo, curExtMo, curDebtMo, curStockMo,
   } = e.data;
 
   const currentWealth = simulate(
-    revStart, extStart, debtStart,
-    curRevMo, curExtMo, curDebtMo,
-    rR1, rR2, revTier, eR, dR,
+    revStart, extStart, debtStart, stockStart,
+    curRevMo, curExtMo, curDebtMo, curStockMo,
+    rR1, rR2, revTier, eR, dR, sR,
     simMonths, raiseRate,
   );
 
-  const step = totalBudget > 3000 ? 50 : totalBudget > 1500 ? 20 : 10;
+  const step = totalBudget > 3000 ? 100 : totalBudget > 1500 ? 50 : 20;
   let bestWealth = -Infinity;
-  let bestRev = 0, bestExt = 0, bestDebt = 0;
+  let bestRev = 0, bestExt = 0, bestDebt = 0, bestStock = 0;
 
   for (let d = 0; d <= totalBudget; d += step) {
     for (let r = 0; r <= totalBudget - d; r += step) {
-      const ex = totalBudget - d - r;
-      const w  = simulate(
-        revStart, extStart, debtStart,
-        r, ex, d,
-        rR1, rR2, revTier, eR, dR,
-        simMonths, raiseRate,
-      );
-      if (w > bestWealth) { bestWealth = w; bestRev = r; bestExt = ex; bestDebt = d; }
+      for (let s = 0; s <= totalBudget - d - r; s += step) {
+        const ex = totalBudget - d - r - s;
+        const w  = simulate(
+          revStart, extStart, debtStart, stockStart,
+          r, ex, d, s,
+          rR1, rR2, revTier, eR, dR, sR,
+          simMonths, raiseRate,
+        );
+        if (w > bestWealth) { bestWealth = w; bestRev = r; bestExt = ex; bestDebt = d; bestStock = s; }
+      }
     }
   }
 
-  const result: OptimizeResult = { bestRev, bestExt, bestDebt, bestWealth, currentWealth };
+  const result: OptimizeResult = { bestRev, bestExt, bestDebt, bestStock, bestWealth, currentWealth };
   (self as DedicatedWorkerGlobalScope).postMessage(result);
 };

@@ -6,18 +6,19 @@ import OptimizerWorker from '../../workers/optimizer.worker?worker';
 import styles from './OptimizeSection.module.css';
 
 interface Props {
-  payload:       OptimizePayload;
-  currentRevMo:  number;
-  currentExtMo:  number;
-  currentDebtMo: number;
-  years:         number;
-  onApplyBest:   (result: OptimizeResult) => void;
+  payload:        OptimizePayload;
+  currentRevMo:   number;
+  currentExtMo:   number;
+  currentDebtMo:  number;
+  currentStockMo: number;
+  years:          number;
+  onApplyBest:    (result: OptimizeResult) => void;
 }
 
 type State = 'idle' | 'computing' | 'done';
 
 export default function OptimizeSection({
-  payload, currentRevMo, currentExtMo, currentDebtMo, years, onApplyBest,
+  payload, currentRevMo, currentExtMo, currentDebtMo, currentStockMo, years, onApplyBest,
 }: Props) {
   const { t } = useTranslation();
   const [state,  setState]  = useState<State>('idle');
@@ -81,6 +82,8 @@ export default function OptimizeSection({
             <div className={styles.resultItem}>{t('wealthPlanner.optimize.current')}: €{currentRevMo}{perMonth}</div>
             <div className={styles.resultItem}>{t('wealthPlanner.optimize.deposit')}: <strong>€{result.bestExt}</strong>{perMonth}</div>
             <div className={styles.resultItem}>{t('wealthPlanner.optimize.current')}: €{currentExtMo}{perMonth}</div>
+            <div className={styles.resultItem}>{t('wealthPlanner.optimize.stocks')}: <strong>€{result.bestStock}</strong>{perMonth}</div>
+            <div className={styles.resultItem}>{t('wealthPlanner.optimize.current')}: €{currentStockMo}{perMonth}</div>
             <div className={styles.resultItem}>{t('wealthPlanner.optimize.duo')}: <strong>€{result.bestDebt}</strong>{perMonth}</div>
             <div className={styles.resultItem}>{t('wealthPlanner.optimize.current')}: €{currentDebtMo}{perMonth}</div>
           </div>

@@ -35,6 +35,15 @@
 }
 .debt h3 { color: var(--color-danger-light); }
 
+.stocks {
+  border-color: color-mix(in srgb, #a78bfa 30%, transparent);
+  background: color-mix(in srgb, #a78bfa 4%, transparent);
+}
+.stocks:hover {
+  background: color-mix(in srgb, #a78bfa 8%, transparent);
+}
+.stocks h3 { color: #c4b5fd; }
+
 .tierRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
